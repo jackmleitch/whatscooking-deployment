@@ -417,6 +417,8 @@ def ingredient_parser(ingreds):
         "vegetable oil",
         "chopped oil",
         "garlic",
+        "skin off",
+        "bone out" "from sustrainable sources",
     ]
     # The ingredient list is now a string so we need to turn it back into a list. We use ast.literal_eval
     if isinstance(ingreds, list):
@@ -450,7 +452,7 @@ def ingredient_parser(ingreds):
         items = [word for word in items if word not in words_to_remove]
         if items:
             ingred_list.append(" ".join(items))
-    ingred_list = " ".join(ingred_list)
+    # ingred_list = " ".join(ingred_list)
     return ingred_list
 
 

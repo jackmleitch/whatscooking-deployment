@@ -1,0 +1,13 @@
+name: whatscooking_gensim
+channels:
+  - defaults
+dependencies:
+  - python==3.8.5
+  - pip=21.0.1
+  - pip:
+      - streamlit
+      - numpy==1.19.2
+      - gensim
+      # - opencv
+      - pandas==1.2.3
+      - sklearn

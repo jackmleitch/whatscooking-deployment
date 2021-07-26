@@ -8,6 +8,8 @@ from PIL import Image
 import config, rec_sys
 from ingredient_parser import ingredient_parser
 
+from word2vec_rec import get_recs
+
 import nltk
 
 try:
@@ -36,7 +38,7 @@ def main():
         "## Given a list of ingredients, what different recipes can I can make? :tomato: "
     )
     st.markdown(
-        "For example, what recipes can you make with the food in your apartment? :house: My ML based model will look through over 4500 recipes to find matches for you... :mag: Try it out for yourself below! :arrow_down:"
+        "For example, say I want to use up some food in my apartment, what can I cook? :house: My ML based model will look through over 4500 recipes to find matches for you... :mag: Try it out for yourself below! :arrow_down:"
     )
 
     st.text("")
@@ -49,7 +51,10 @@ def main():
         recipe_df_clean="",
     )
 
-    ingredients = st.text_input("Enter ingredients you would like to cook with")
+    ingredients = st.text_input(
+        "Enter ingredients you would like to cook with (seperate ingredients with a comma)",
+        "onion, chorizo, chicken thighs, paella rice, frozen peas, prawns",
+    )
     session_state.execute_recsys = st.button("Give me recommendations!")
 
     if session_state.execute_recsys:
@@ -57,7 +62,8 @@ def main():
         col1, col2, col3 = st.beta_columns([1, 6, 1])
         with col2:
             gif_runner = st.image("input/cooking_gif.gif")
-        recipe = rec_sys.RecSys(ingredients)
+        # recipe = rec_sys.RecSys(ingredients)
+        recipe = get_recs(ingredients, mean=True)
         gif_runner.empty()
         session_state.recipe_df_clean = recipe.copy()
         # link is the column with hyperlinks
@@ -85,10 +91,30 @@ def main():
             selection_details = session_state.recipe_df_clean.loc[
                 session_state.recipe_df_clean.recipe == selection
             ]
-            st.write(f"Recipe: {selection_details.recipe.values[0]}")
-            st.write(f"Ingredients: {selection_details.ingredients.values[0]}")
-            st.write(f"URL: {selection_details.url.values[0]}")
-            st.write(f"Score: {selection_details.score.values[0]}")
+            st.markdown(f"# {selection_details.recipe.values[0]}")
+            st.subheader(f"Website: {selection_details.url.values[0]}")
+            ingredients_disp = selection_details.ingredients.values[0].split(",")
+
+            st.subheader("Ingredients:")
+            col1, col2 = st.beta_columns(2)
+            ingredients_disp = [
+                ingred
+                for ingred in ingredients_disp
+                if ingred
+                not in [
+                    " skin off",
+                    " bone out",
+                    " from sustainable sources",
+                    " minced",
+                ]
+            ]
+            ingredients_disp1 = ingredients_disp[len(ingredients_disp) // 2 :]
+            ingredients_disp2 = ingredients_disp[: len(ingredients_disp) // 2]
+            for ingred in ingredients_disp1:
+                col1.markdown(f"* {ingred}")
+            for ingred in ingredients_disp2:
+                col2.markdown(f"* {ingred}")
+            # st.write(f"Score: {selection_details.score.values[0]}")
 
     # sidebar stuff
     with st.sidebar.beta_expander("How it works?", expanded=True):
