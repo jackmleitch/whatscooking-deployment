@@ -20,9 +20,6 @@ gensim==4.0.1
 gitdb==4.0.7
 GitPython==3.1.18
 idna==3.2
-ipython==7.25.0
-ipython-genutils==0.2.0
-ipywidgets==7.6.3
 jedi==0.18.0
 Jinja2==3.0.1
 joblib==1.0.1
