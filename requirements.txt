@@ -20,7 +20,6 @@ gensim==4.0.1
 gitdb==4.0.7
 GitPython==3.1.18
 idna==3.2
-ipykernel==6.0.3
 ipython==7.25.0
 ipython-genutils==0.2.0
 ipywidgets==7.6.3
