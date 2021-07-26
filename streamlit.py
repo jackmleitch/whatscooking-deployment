@@ -31,7 +31,7 @@ def main():
     st.markdown("# *What's Cooking? :cooking:*")
 
     st.markdown(
-        "An ML powered app by Jack Leitch <a href='https://github.com/jackmleitch/Whatscooking-' > <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png' width='20' height='20' > </a> ",
+        "An ML powered app by Jack Leitch <a href='https://github.com/jackmleitch/whatscooking-deployment' > <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png' width='20' height='20' > </a> ",
         unsafe_allow_html=True,
     )
     st.markdown(
