@@ -120,7 +120,7 @@ def main():
     with st.sidebar.beta_expander("How it works?", expanded=True):
         st.markdown("## How it works? :thought_balloon:")
         st.write(
-            "For an in depth overview of the ML methods used and how I created this app, two blog posts are below."
+            "For an in depth overview of the ML methods used and how I created this app, three blog posts are below."
         )
         blog1 = "https://jackmleitch.medium.com/using-beautifulsoup-to-help-make-beautiful-soups-d2670a1d1d52"
         blog2 = "https://towardsdatascience.com/building-a-recipe-recommendation-api-using-scikit-learn-nltk-docker-flask-and-heroku-bfc6c4bdd2d4"
